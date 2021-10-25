@@ -1,5 +1,7 @@
 FROM ghcr.io/asfopensarlab/opensarlab-container:latest
 
+USER root
+
 RUN python -m pip install \
     nbgitpuller \
     ipywidgets \
@@ -16,3 +18,7 @@ RUN python -m pip install \
     #jupyter nbextension install --py hide_code --user
     #jupyter nbextension enable --py hide_code --user
     #jupyter serverextension enable --py hide_code --user
+
+RUN chown -R jovyan:users /opt/conda
+
+USER jovyan
